@@ -1,9 +1,7 @@
 # l395tool
 
-Utilitário próprio para zerar o contador das almofadas de tinta da **Epson L395**,
-sem baixar "resetters" de procedência duvidosa.
+Utilitário próprio para zerar o contador das almofadas de tinta da **Epson L395**.
 
-- Um arquivo só (`l395tool.py`), ~800 linhas, **sem dependências**: só Python 3.8+.
 - Conversa com a impressora **pela rede (Wi-Fi)**, via SNMP, usando os comandos de
   manutenção que o próprio firmware da Epson aceita. Não instala driver, não precisa de USB.
 - **Sempre faz backup da EEPROM inteira** antes de gravar, e confere cada byte gravado
@@ -11,15 +9,15 @@ sem baixar "resetters" de procedência duvidosa.
 
 ## O que ele grava
 
-Só seis bytes, conferidos em dois projetos open source independentes
-([epson_print_conf](https://github.com/Ircama/epson_print_conf) e
-[ez-reset](https://github.com/CiRIP/ez-reset)):
-
 | Endereço | Valor | O que é |
 |---|---|---|
 | 0x18, 0x19, 0x1E | 00 | contador das almofadas (100% = 6207) |
 | 0x1C, 0x1D | 00 | cópia do contador |
 | 0x2E | 5E | nível de "manutenção requerida" |
+
+Créditos:
+([epson_print_conf](https://github.com/Ircama/epson_print_conf) e
+[ez-reset](https://github.com/CiRIP/ez-reset))
 
 ## Como usar
 
